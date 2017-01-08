@@ -1,0 +1,80 @@
+package com.brioal.bannerview;
+
+import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * email :brioal@foxmail.com
+ * github : https://github.com/Brioal
+ * Created by brioal on 17-1-7.
+ */
+
+public class BannerView extends RelativeLayout {
+    private BannerViewPager mViewPager;
+    private BaseIndexView mBaseIndexView;
+    private Context mContext;
+    private List<BannerBean> mList;
+    private OnBannerClickListener mClickListener;
+
+    public BannerView(Context context) {
+        this(context, null);
+    }
+
+    public BannerView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        mContext = context;
+    }
+
+    public BannerView initViewPager(List<BannerBean> list, int duration, OnBannerClickListener listener) {
+        mList = list;
+        mViewPager = new BannerViewPager(mContext);
+        List<BannerBean> data = new ArrayList<>();
+        data.addAll(list);
+        mClickListener = listener;
+        mViewPager.setList(data).setDuration(duration).setOnBannerClickListener(listener);
+        return this;
+    }
+
+    public BannerView initIndex(BaseIndexView indexView) {
+        mBaseIndexView = indexView;
+        return this;
+    }
+
+    public void build(FragmentManager manager) {
+        mViewPager.setId(Integer.valueOf(3));
+        mViewPager.build(manager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mBaseIndexView.setNextIndex(position % mList.size());
+                mBaseIndexView.setOffset(positionOffset);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        addView(mViewPager, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+        if (mBaseIndexView == null) {
+            mBaseIndexView = new DefaultIndexView(mContext);
+        }
+        mViewPager.initIndexView(mBaseIndexView);
+        RelativeLayout.LayoutParams indexParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        indexParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        addView(mBaseIndexView, indexParams);
+    }
+
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="circle_color_normal">#9dffffff</color>
+    <color name="circle_color_select">#ffffff</color>
+    <color name="line_color">#cf9800</color>
+</resources>
