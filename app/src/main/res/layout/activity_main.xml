@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,10 +9,24 @@
     android:orientation="vertical"
     tools:context="com.brioal.autobanner.MainActivity">
 
-    <com.brioal.bannerview.BannerView
-        android:id="@+id/main_banner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/colorAccent"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="enterCircleIndecator"
+            android:text="圆形指示器"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="enterLineIndicator"
+            android:text="线条指示器"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

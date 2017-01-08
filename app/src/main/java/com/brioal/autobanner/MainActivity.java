@@ -1,50 +1,26 @@
 package com.brioal.autobanner;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
-
-import com.brioal.bannerview.BannerBean;
-import com.brioal.bannerview.BannerView;
-import com.brioal.bannerview.LineIndexView;
-import com.brioal.bannerview.OnBannerClickListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private BannerView mBannerView;
-    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBannerView = (BannerView) findViewById(R.id.main_banner);
-
-        List<BannerBean> list = new ArrayList<>();
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//4d27d2f4cc47a3cf87b60ac1a2b3ae9c510.png", "第一", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//6322dbed206f0c7a5f94dc1d638bb933783.jpg", "第一", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//c526cbe82e762e9f4cdef618db1a4f38139.jpg", "第一", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//3349eb20e1cf80a9773c7cae5834c6ed923.jpg", "第一", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//877f4ff245d55f60948e575f2726bfd1214.jpg", "第一", ""));
-        mBannerView.initViewPager(list, 2000, new OnBannerClickListener() {
-            @Override
-            public void click(BannerBean bean, int position) {
-                showToast(position + "");
-            }
-        })
-                .initIndex(new LineIndexView(this, 10).setLineColor(Color.RED))
-                .build(getSupportFragmentManager());
     }
 
-    private void showToast(String msg) {
-        if (mToast == null) {
-            mToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-        } else {
-            mToast.setText(msg);
-        }
-        mToast.show();
+    public void enterCircleIndecator(View view) {
+        Intent intent = new Intent(this, CirclePointActivity.class);
+        startActivity(intent);
+    }
+
+    public void enterLineIndicator(View view) {
+        Intent intent = new Intent(this, LineActivity.class);
+        startActivity(intent);
     }
 }

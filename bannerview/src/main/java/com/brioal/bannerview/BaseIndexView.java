@@ -25,6 +25,6 @@ abstract class BaseIndexView extends RelativeLayout {
 
     public BaseIndexView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setPadding(5, 5, 5, 0);
+        setPadding(0, 5, 0, 0);
     }
 }

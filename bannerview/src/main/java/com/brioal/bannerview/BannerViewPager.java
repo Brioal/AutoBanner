@@ -114,7 +114,9 @@ class BannerViewPager extends ViewPager implements View.OnClickListener {
             mClickListener.click(mList.get(getCurrentItem() % mList.size()), getCurrentItem() % mList.size());
         }
     }
+
     long dasdas = 0;
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
 
