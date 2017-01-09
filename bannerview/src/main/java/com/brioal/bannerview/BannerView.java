@@ -21,7 +21,8 @@ public class BannerView extends RelativeLayout {
     private BaseIndexView mBaseIndexView;
     private Context mContext;
     private List<BannerBean> mList;
-    private OnBannerClickListener mClickListener;
+    private boolean isGallery = false;//是否画廊效果
+    private BaseTransformer mTransformer;//切换动画
 
     public BannerView(Context context) {
         this(context, null);
@@ -37,7 +38,6 @@ public class BannerView extends RelativeLayout {
         mViewPager = new BannerViewPager(mContext);
         List<BannerBean> data = new ArrayList<>();
         data.addAll(list);
-        mClickListener = listener;
         mViewPager.setList(data).setDuration(duration).setOnBannerClickListener(listener);
         return this;
     }
@@ -47,9 +47,25 @@ public class BannerView extends RelativeLayout {
         return this;
     }
 
+    //设置是否画廊效果
+    public BannerView setGallery(boolean gallery) {
+        isGallery = gallery;
+        return this;
+    }
+
+    //设置切换动画
+    public BannerView setTransDormer(BaseTransformer transDormer) {
+        mTransformer = transDormer;
+        return this;
+    }
+
     public void build(FragmentManager manager) {
+        if (mTransformer != null) {
+            mViewPager.setPageTransformer(true, mTransformer);
+        }
         mViewPager.setId(Integer.valueOf(3));
         mViewPager.build(manager);
+        mViewPager.setCurrentItem(mList.size());
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -67,7 +83,16 @@ public class BannerView extends RelativeLayout {
 
             }
         });
-        addView(mViewPager, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+        RelativeLayout.LayoutParams viewPagerParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        if (isGallery) {
+            mViewPager.setClipChildren(false);
+            setClipChildren(false);
+            mViewPager.setPageMargin(16);
+            viewPagerParams.leftMargin = 80;
+            viewPagerParams.rightMargin = 80;
+        }
+        viewPagerParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        addView(mViewPager, viewPagerParams);
         if (mBaseIndexView == null) {
             mBaseIndexView = new DefaultIndexView(mContext);
         }
