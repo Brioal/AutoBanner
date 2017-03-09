@@ -1,5 +1,6 @@
 package com.brioal.autobanner;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -22,18 +23,20 @@ public class CirclePointActivity extends AppCompatActivity {
         setContentView(R.layout.activity_circle_point);
         mBannerView = (BannerView) findViewById(R.id.circle_bannerView);
         List<BannerBean> list = new ArrayList<>();
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//4d27d2f4cc47a3cf87b60ac1a2b3ae9c510.png", "", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//6322dbed206f0c7a5f94dc1d638bb933783.jpg", "", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//c526cbe82e762e9f4cdef618db1a4f38139.jpg", "", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//3349eb20e1cf80a9773c7cae5834c6ed923.jpg", "", ""));
-        list.add(new BannerBean("http://123.206.20.217/brioalcode/up//877f4ff245d55f60948e575f2726bfd1214.jpg", "", ""));
+        list.add(new BannerBean("http://119.29.116.206/pics/01.jpg", "", ""));
+        list.add(new BannerBean("http://119.29.116.206/pics/02.jpg", "", ""));
+        list.add(new BannerBean("http://119.29.116.206/pics/03.jpg", "", ""));
+        list.add(new BannerBean("http://119.29.116.206/pics/04.jpg", "", ""));
+        list.add(new BannerBean("http://119.29.116.206/pics/05.jpg", "", ""));
+        DefaultIndexView defaultIndexView = new DefaultIndexView(this);
+        defaultIndexView.setPointSize(8).setColorNormal(Color.BLACK).setColorSelect(Color.RED);
         mBannerView.initViewPager(list, 2000, new OnBannerClickListener() {
             @Override
             public void click(BannerBean bean, int position) {
                 showToast(position + "");
             }
         })
-                .initIndex(new DefaultIndexView(this).setPointSize(6))
+                .initIndex(defaultIndexView)
                 .setGallery(true)
                 .build(getSupportFragmentManager());
     }

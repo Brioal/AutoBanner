@@ -69,7 +69,7 @@ public class BannerView extends RelativeLayout {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mBaseIndexView.setNextIndex(position % mList.size());
+                mBaseIndexView.setNextIndex(position % mList.size() - 1);
                 mBaseIndexView.setOffset(positionOffset);
             }
 
