@@ -102,7 +102,6 @@ class BannerViewPager extends ViewPager implements View.OnClickListener {
         if (!isAnimation) {
             return;
         }
-        System.out.println("切换下一张");
         setCurrentItem(getCurrentItem() + 1, true);
     }
 

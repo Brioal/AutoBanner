@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AutoBanner.iml" filepath="$PROJECT_DIR$/AutoBanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/AutoBanner-master.iml" filepath="$PROJECT_DIR$/AutoBanner-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bannerview/bannerview.iml" filepath="$PROJECT_DIR$/bannerview/bannerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/bannerview/bannerview.iml" filepath="$PROJECT_DIR$/bannerview/bannerview.iml" />
     </modules>
   </component>
