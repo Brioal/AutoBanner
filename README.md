@@ -13,6 +13,7 @@ Add it in your root build.gradle at the end of repositories:
 	}
 ```
 Step 2. Add the dependency
+### 最新版本好为:[![](https://jitpack.io/v/Brioal/AutoBanner.svg)](https://jitpack.io/#Brioal/AutoBanner)
 ```
 	dependencies {
 	        compile 'com.github.Brioal:AutoBanner:1.2'
