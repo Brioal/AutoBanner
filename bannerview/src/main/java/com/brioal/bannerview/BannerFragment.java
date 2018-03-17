@@ -60,7 +60,7 @@ public class BannerFragment extends Fragment {
         }
 
         if (mBean.getImgUrl() != null && !mBean.getImgUrl().isEmpty()) {
-            Glide.with(getActivity()).load(mBean.getImgUrl()).error(PicConfig.FAILED_PIC).into(mIvImg);
+            Glide.with(getActivity()).load(mBean.getImgUrl()).into(mIvImg);
         }
 
 
